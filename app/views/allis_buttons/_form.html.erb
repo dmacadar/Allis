@@ -1,0 +1,58 @@
+<%= form_for(@allis_button) do |f| %>
+  <% if @allis_button.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@allis_button.errors.count, "error") %> prohibited this allis_button from being saved:</h2>
+
+      <ul>
+      <% @allis_button.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <% #f.text_field :user_id %>
+	<%= f.collection_select :user_id, User.all, :id, :email %>
+  </div>
+  <div class="field">
+    <%= f.label :word %><br>
+    <%= f.text_area :word %>
+  </div>
+  <div class="field">
+    <%= f.label :style %><br>
+    <%= f.text_area :style %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.datetime_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :udate_date %><br>
+    <%= f.datetime_select :udate_date %>
+  </div>
+  <div class="field">
+    <%= f.label :interval %><br>
+    <%= f.number_field :interval %>
+  </div>
+  <div class="field">
+    <%= f.label :subject_warning %><br>
+    <%= f.text_area :subject_warning %>
+  </div>
+  <div class="field">
+    <%= f.label :message_warning %><br>
+    <%= f.text_area :message_warning %>
+  </div>
+  <div class="field">
+    <%= f.label :eml_warning %><br>
+    <%= f.text_area :eml_warning %>
+  </div>
+  <div class="field">
+    <%= f.label :warns %><br>
+    <%= f.number_field :warns %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

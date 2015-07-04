@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  word: MyText
+  start_date: 2015-07-02 14:24:09
+  udate_date: 2015-07-02 14:24:09
+  interval: 1
+  subject_warning: MyText
+  message_warning: MyText
+  eml_warning: MyText
+  warns: 1
+
+two:
+  user_id: 
+  word: MyText
+  start_date: 2015-07-02 14:24:09
+  udate_date: 2015-07-02 14:24:09
+  interval: 1
+  subject_warning: MyText
+  message_warning: MyText
+  eml_warning: MyText
+  warns: 1

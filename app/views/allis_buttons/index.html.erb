@@ -1,0 +1,48 @@
+<%= render_navigation %>
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Allis Buttons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th  width="150px">Button</th>
+      <th>Word</th>
+      <th>Start date</th>
+      <th>Udate date</th>
+      <th>Interval</th>
+      <th>Subject warning</th>
+      <th>Message warning</th>
+      <th>Eml warning</th>
+      <th>Warns</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @allis_buttons.each do |allis_button| %>
+      <tr>
+		<td>
+			<%=form_for allis_button do |f|%>
+				<%=f.hidden_field :update_action, value: 'check_only' %>
+				<%=f.submit "All is " + allis_button.word, {:class => "allis-button " + allis_button.style}%>
+			<% end%>
+		</td>
+        <td><%= allis_button.word %></td>
+        <td><%= allis_button.start_date %></td>
+        <td><%= allis_button.udate_date %></td>
+        <td><%= allis_button.interval %></td>
+        <td><%= allis_button.subject_warning %></td>
+        <td><%= allis_button.message_warning %></td>
+        <td><%= allis_button.eml_warning %></td>
+        <td><%= allis_button.warns %></td>
+        <td><%= link_to 'Show', allis_button %></td>
+        <td><%= link_to 'Edit', edit_allis_button_path(allis_button) %></td>
+        <td><%= link_to 'Destroy', allis_button, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'New Allis button', new_allis_button_path %>

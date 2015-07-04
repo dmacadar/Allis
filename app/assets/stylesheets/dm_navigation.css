@@ -1,0 +1,11 @@
+@charset "utf-8";
+#top_menu{
+list-style-type: none;
+text-align: center;
+float:right;
+}
+#top_menu li{
+	margin: 5px;
+	padding: 0px;
+	display: inline;
+}
