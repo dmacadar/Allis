@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   
     mount Resque::Server.new, at: '/resque_web', as: :resque_web
 
+    #Support
+    resources :allis_button_styles
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

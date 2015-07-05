@@ -7,7 +7,6 @@
   <thead>
     <tr>
       <th  width="150px">Button</th>
-      <th>Word</th>
       <th>Start date</th>
       <th>Udate date</th>
       <th>Interval</th>
@@ -28,7 +27,6 @@
 				<%=f.submit "All is " + allis_button.word, {:class => "allis-button " + allis_button.style}%>
 			<% end%>
 		</td>
-        <td><%= allis_button.word %></td>
         <td><%= allis_button.start_date %></td>
         <td><%= allis_button.udate_date %></td>
         <td><%= allis_button.interval %></td>
@@ -45,4 +43,6 @@
 </table>
 
 <br>
+<% if user_signed_in? %>
 <%= link_to 'New Allis button', new_allis_button_path %>
+<% end%>

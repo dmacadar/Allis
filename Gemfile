@@ -26,7 +26,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #DM
 gem 'figaro' #Creates application.yml
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun' #Mailgun API
-gem 'delayed_job_active_record' # ERROR! SSL probems with Mailgun (Check)
 gem 'omniauth-facebook' # Facebook authentication
 gem "koala", "~> 1.10.0rc" # Facebook API
 gem 'resque'
@@ -35,6 +34,7 @@ gem 'resque-web', require: 'resque_web'
 gem 'time_difference'
 gem 'simple-navigation'
 gem 'devise'
+gem 'rename'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

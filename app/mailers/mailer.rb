@@ -2,6 +2,7 @@ class Mailer < ApplicationMailer
 #  default from: "diego@allis.com"
   
   def sample_email(email) #Needs simple arguments because of resque, check this!
+    logger.info "will send email to:" + email + "from sample_email(email)"
    # @user = user
 
   #Direct - No API

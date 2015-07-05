@@ -21,7 +21,9 @@ class AllisButtonsController < ApplicationController
   # GET /allis_buttons/1/edit
   def edit
   end
-
+  def getTaskName(user_id, allis_button_id)
+    'abc_'+ user_id.to_s + '_' + allis_button_id.to_s #change to {} format
+  end
   # POST /allis_buttons
   # POST /allis_buttons.json
   def create
@@ -31,6 +33,22 @@ class AllisButtonsController < ApplicationController
       if @allis_button.save
         format.html { redirect_to @allis_button, notice: 'Allis button was successfully created.' }
         format.json { render :show, status: :created, location: @allis_button }
+        #
+        @user = User.find_by(id: @allis_button.user_id)
+        name = self.getTaskName(@user.id, @allis_button.id)
+        
+        #config = {}
+        #config[:queue] = 'AllisButtonCreated'
+        #config[:class] = 'SendEmailJob'
+        #config[:args] = @user.email
+        #config[:every] = ['2m', {first_in: 10.seconds}]
+        #config[:persist] = true
+        #config[:verify_ssl] = false
+    
+        #Resque.set_schedule(name, config)
+        #
+        logger.info "I am trying to send an email trough a queue to:" + @user.email
+        Resque.enqueue_in_with_queue('AllisButtonCreated',0.seconds, SendEmailJob, @user.email)
       else
         format.html { render :new }
         format.json { render json: @allis_button.errors, status: :unprocessable_entity }
@@ -42,12 +60,14 @@ class AllisButtonsController < ApplicationController
   # PATCH/PUT /allis_buttons/1.json
   def update
     respond_to do |format|
-      if  params.require(:allis_button).permit(:update_action)[:update_action] == "check_only"
-          @allis_button[:udate_date] = DateTime.now
-          notice =  'Allis button was successfully checked.' + ' Time: ' + @allis_button[:udate_date].to_s
-        else
-          notice = 'Allis button was successfully updated.'
+      case params.require(:allis_button).permit(:update_action)[:update_action]
+      when "check_only"
+        @allis_button[:udate_date] = DateTime.now
+        notice =  'Allis button was successfully checked.' + ' Time: ' + @allis_button[:udate_date].to_s
+      else
+        notice = 'Allis button was successfully updated.'
       end
+
       if @allis_button.update(allis_button_params)
         format.html { redirect_to @allis_button, notice: notice}
         format.json { render :show, status: :ok, location: @allis_button }
@@ -66,6 +86,8 @@ class AllisButtonsController < ApplicationController
       format.html { redirect_to allis_buttons_url, notice: 'Allis button was successfully destroyed.' }
       format.json { head :no_content }
     end
+    name = self.getTaskName(@allis_button.user_id, @allis_button.id)
+    Resque.remove_schedule(name)
   end
   
   private
@@ -76,6 +98,6 @@ class AllisButtonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def allis_button_params
-      params.require(:allis_button).permit(:user_id, :word, :start_date, :udate_date, :interval, :subject_warning, :message_warning, :eml_warning, :warns, :style)
+      params.require(:allis_button).permit(:user_id, :word, :start_date, :udate_date, :interval, :subject_warning, :message_warning, :eml_warning, :style)
     end
 end

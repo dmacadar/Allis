@@ -1,0 +1,25 @@
+<%= form_for(@allis_button_style) do |f| %>
+  <% if @allis_button_style.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@allis_button_style.errors.count, "error") %> prohibited this allis_button_style from being saved:</h2>
+
+      <ul>
+      <% @allis_button_style.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :color %><br>
+    <%= f.text_field :color %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

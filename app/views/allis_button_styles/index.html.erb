@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Allis Button Styles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @allis_button_styles.each do |allis_button_style| %>
+      <tr>
+        <td><div class="color_preview" style="background-color:<%= allis_button_style.color %>"> </div></td>
+        <td><%= allis_button_style.name %></td>
+        <td><%= link_to 'Show', allis_button_style %></td>
+        <td><%= link_to 'Edit', edit_allis_button_style_path(allis_button_style) %></td>
+        <td><%= link_to 'Destroy', allis_button_style, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Allis button style', new_allis_button_style_path %>

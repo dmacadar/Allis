@@ -14,23 +14,23 @@
   <div class="field">
     <%= f.label :user_id %><br>
     <% #f.text_field :user_id %>
-	<%= f.collection_select :user_id, User.all, :id, :email %>
+	<%= f.collection_select :user_id, User.all, :id, :email, {:prompt => "Please select"} %>
   </div>
   <div class="field">
     <%= f.label :word %><br>
-    <%= f.text_area :word %>
+    <%= f.text_field :word %>
   </div>
   <div class="field">
     <%= f.label :style %><br>
-    <%= f.text_area :style %>
+	<%= f.collection_select :style, AllisButtonStyle.all, :name, :name,  {prompt:"choose a style"} %>
   </div>
   <div class="field">
     <%= f.label :start_date %><br>
-    <%= f.datetime_select :start_date %>
+    <%= f.datetime_local_field :start_date %>
   </div>
   <div class="field">
     <%= f.label :udate_date %><br>
-    <%= f.datetime_select :udate_date %>
+    <%= f.datetime_local_field :udate_date %>
   </div>
   <div class="field">
     <%= f.label :interval %><br>
@@ -38,7 +38,7 @@
   </div>
   <div class="field">
     <%= f.label :subject_warning %><br>
-    <%= f.text_area :subject_warning %>
+    <%= f.text_field :subject_warning %>
   </div>
   <div class="field">
     <%= f.label :message_warning %><br>
@@ -46,12 +46,12 @@
   </div>
   <div class="field">
     <%= f.label :eml_warning %><br>
-    <%= f.text_area :eml_warning %>
+    <%= f.email_field :eml_warning %>
   </div>
-  <div class="field">
+  <!--div class="field">
     <%= f.label :warns %><br>
     <%= f.number_field :warns %>
-  </div>
+  </div-->
   <div class="actions">
     <%= f.submit %>
   </div>
